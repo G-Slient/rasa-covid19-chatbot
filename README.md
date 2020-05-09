@@ -66,6 +66,23 @@ To run your assistant in a interactive learning session, run:
 ```rasa interactive```  
 
 
+### Steps to run the complete project
+
+Run the below steps in different terminals
+
+Step 1: Run the Flask server for getting covid data
+
+    python app.py
+
+Step 2: Run the Actions Server 
+
+    rasa run actions
+
+Step 3: Run the Shell to interact with bot
+
+    rasa shell
+
+
 ## Integration with FrontEnd Website
 
     Coming soon ...
