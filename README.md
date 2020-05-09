@@ -87,3 +87,20 @@ Step 3: Run the Shell to interact with bot
 
     Coming soon ...
 
+
+### Tasks To-Do-List
+
+
+- [x] create the basic project 
+- [x] Make NLU training data
+- [x] Make the dialogue management model
+- [x] Make a flask server to extract the covid data from https://api.covid19india.org/
+- [] Create the more stories
+- [] Handle the spelling mistakes by the users
+- [] Handle the date format given by the users.
+- [] create a frontend application 
+- [] connect the frontend with the rasa-chatbot
+- [] deploy the flask server.
+- [] deploy the chatbot app.
+
+
