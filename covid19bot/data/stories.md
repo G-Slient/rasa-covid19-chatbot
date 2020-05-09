@@ -74,3 +74,13 @@
   - utter_goodbye
 
 
+
+## interactive_story_1
+* greet
+    - utter_greet
+* search_no_patients{"location": "tamil nadu"}
+    - slot{"location": "tamil nadu"}
+    - action_search_no_patients
+* search_cases_ondate{"date": "08-May-20"}
+    - slot{"date": "08-May-20"}
+    - action_search_cases_ondate
