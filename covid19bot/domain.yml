@@ -1,0 +1,43 @@
+intents:
+  - greet
+  - goodbye
+  - search_no_patients
+  - inform
+  - search_cases_ondate
+  - search_growth_rate
+  - search_highest_rate
+  - check_zone
+
+entities:
+  - location
+  - date  
+
+actions:
+  - utter_ask_location
+  - action_search_cases_ondate
+  - action_search_no_patients
+  - action_search_growth_rate
+  - action_search_highest_rate
+  - action_check_zone
+  - utter_goodbye
+  - utter_greet
+
+slots:
+  location:
+    type: text
+  date:
+    type: text
+
+responses:
+  utter_greet:
+  - text: "Hey!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_ask_location:
+  - text: "Please provide the name of the state."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
