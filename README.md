@@ -98,9 +98,9 @@ Step 3: Run the Shell to interact with bot
 - [ ] Create the more stories
 - [ ] Handle the spelling mistakes by the users
 - [ ] Handle the date format given by the users.
-- [ ] create a frontend application 
-- [ ] connect the frontend with the rasa-chatbot
-- [ ] deploy the flask server.
+- [x] create a frontend application 
+- [x] connect the frontend with the rasa-chatbot
+- [x] deploy the flask server.
 - [ ] deploy the chatbot app.
 
 
