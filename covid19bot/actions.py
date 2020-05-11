@@ -14,6 +14,10 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 import requests
 
+# The Covid Data Api is hosted on PythonAnywhere Cloud Platform
+
+IP = "http://gobillamothy85.pythonanywhere.com"
+
 
 class ActionSearchNoPatients(Action):
 
@@ -33,7 +37,7 @@ class ActionSearchNoPatients(Action):
   			'loc': loc
 		}
 
-        data = requests.get("http://127.0.0.1:8000/getstatecases", params)
+        data = requests.get(IP+"/getstatecases", params)
 
         data = data.json()
 
@@ -45,7 +49,7 @@ class ActionSearchNoPatients(Action):
         date = data['date']
 
         response = """As of {} in {}. Confirmed cases: {}, Recovered cases: {}, Deceased cases: {}, Active cases:{}""".format(date,name, confirmed, recovered, deceased, active)
-
+        
         dispatcher.utter_message(response)
 
 
@@ -66,7 +70,7 @@ class ActionSearchCasesOnDate(Action):
   			'date': date
 		}
 
-        data = requests.get("http://127.0.0.1:8000/totalcases", params)
+        data = requests.get(IP+"/totalcases", params)
 
         data = data.json()
 
@@ -75,7 +79,7 @@ class ActionSearchCasesOnDate(Action):
         deceased = data['deceased']
         date = data['date']
 
-        response = """As of {} in {}. Confirmed cases: {}, Recovered cases: {}, Deceased cases: {}.""".format(date,"INDIA", confirmed, recovered, deceased)
+        response = """On {} in {}. Confirmed cases: {}, Recovered cases: {}, Deceased cases: {}.""".format(date,"INDIA", confirmed, recovered, deceased)
 
         dispatcher.utter_message(response)
 
@@ -100,7 +104,7 @@ class ActionSearchGrowthRate(Action):
   			'loc': loc
 		}
 
-        data = requests.get("http://127.0.0.1:8000/growthrate", params)
+        data = requests.get(IP+"/growthrate", params)
 
         data = data.json()
 
@@ -129,7 +133,7 @@ class ActionSearchHightestRate(Action):
   		#	'loc': loc
 		#}
 
-        data = requests.get("http://127.0.0.1:8000/highestgrowthrate")
+        data = requests.get(IP+"/highestgrowthrate")
 
         data = data.json()
 
@@ -161,7 +165,7 @@ class ActionCheckZone(Action):
   			'loc': loc
 		}
 
-        data = requests.get("http://127.0.0.1:8000/getzonetype",params)
+        data = requests.get(IP+"/getzonetype",params)
 
         data = data.json()
 
