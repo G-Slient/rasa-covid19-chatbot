@@ -19,6 +19,7 @@ ngrok-stable-linux-amd64
 Chatbot-Widget-master.zip
 ngrok-stable-linux-amd64.zip
 deploy
+Dockerfile
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
