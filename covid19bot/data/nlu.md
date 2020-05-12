@@ -42,12 +42,14 @@
 - cases on [2-05-2020](date)
 - how many cases on [3 May](date)
 - how many cases on [08-May-20](date)
+- cases on [10 april](date)
 
 ## intent:search_growth_rate
 - what is the growth rate in [Maharashtra](location)
 - what is the growth in [Maharashtra](location)
 - what is the rate in [Maharashtra](location)
 - growth rate in [Maharashtra](location)
+- growth rate in [assam](location)
 
 ## intent:search_highest_rate
 - state with highest growth rate
@@ -55,9 +57,13 @@
 - state with hightest growth
 - which state has the hightest growth rate
 - which state has the hightest rate
+- max growth rate
+- which state has highest cases
 
 ## intent:check_zone
 - what is the zone of [Chittor](location)
 - which zone is in [Chittoor](location)
 - what is the zone of [Mumbai](location)
 - zone of [Pune](location)
+- zone of [anathapur](location)
+- what is the zone of [south andaman](location)

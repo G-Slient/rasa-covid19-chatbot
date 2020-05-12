@@ -4,6 +4,7 @@ actions:
 - action_search_growth_rate
 - action_search_highest_rate
 - action_search_no_patients
+- utter_ask_district
 - utter_ask_location
 - utter_goodbye
 - utter_greet
@@ -11,15 +12,17 @@ entities:
 - date
 - location
 intents:
+- check_zone
+- search_highest_rate
 - search_cases_ondate
-- search_no_patients
+- search_growth_rate
 - greet
+- search_no_patients
 - goodbye
 - inform
-- search_growth_rate
-- search_highest_rate
-- check_zone
 responses:
+  utter_ask_district:
+  - text: Please provide the name of the district.
   utter_ask_location:
   - text: Please provide the name of the state.
   utter_goodbye:

@@ -16,8 +16,8 @@ import requests
 
 # The Covid Data Api is hosted on PythonAnywhere Cloud Platform
 
-IP = "http://gobillamothy85.pythonanywhere.com"
-
+#IP = "http://gobillamothy85.pythonanywhere.com"
+IP = "http://localhost:8000"
 
 class ActionSearchNoPatients(Action):
 
@@ -32,6 +32,8 @@ class ActionSearchNoPatients(Action):
 
         loc = str(loc).lower()
         # Spelling correction
+
+        
 
         params = {
   			'loc': loc
@@ -74,12 +76,15 @@ class ActionSearchCasesOnDate(Action):
 
         data = data.json()
 
-        confirmed = data['confirmed']
-        recovered = data['recovered'] 
-        deceased = data['deceased']
-        date = data['date']
+        if(data['status']=='1'):
+            confirmed = data['confirmed']
+            recovered = data['recovered'] 
+            deceased = data['deceased']
+            date = data['date']
 
-        response = """On {} in {}. Confirmed cases: {}, Recovered cases: {}, Deceased cases: {}.""".format(date,"INDIA", confirmed, recovered, deceased)
+            response = """On {} in {}. Confirmed cases: {}, Recovered cases: {}, Deceased cases: {}.""".format(date,"INDIA", confirmed, recovered, deceased)
+        else:
+            response = """Invalid date!! Please Try again"""
 
         dispatcher.utter_message(response)
 
@@ -172,8 +177,9 @@ class ActionCheckZone(Action):
         name = data['district']
         date = data['updatedate'] 
         zone = data['zone']
+        state = data['state']
 
-        response = """ {} is {} zone since {}""".format(name,zone,date)
+        response = """ {} of {} state is {} zone since {}""".format(name,state,zone,date)
 
         dispatcher.utter_message(response)
 

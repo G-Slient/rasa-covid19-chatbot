@@ -95,9 +95,9 @@ Step 3: Run the Shell to interact with bot
 - [x] Make NLU training data
 - [x] Make the dialogue management model
 - [x] Make a flask server to extract the covid data from https://api.covid19india.org/
-- [ ] Create the more stories
-- [ ] Handle the spelling mistakes by the users
-- [ ] Handle the date format given by the users.
+- [x] Create the more stories
+- [x] Handle the spelling mistakes by the users
+- [x] Handle the date format given by the users.
 - [x] create a frontend application 
 - [x] connect the frontend with the rasa-chatbot
 - [x] deploy the flask server.

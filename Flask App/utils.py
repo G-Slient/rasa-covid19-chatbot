@@ -2,6 +2,9 @@ import requests
 from pandas.io.json import json_normalize
 import numpy as np
 import pandas as pd
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
+from datetime import datetime
 
 statesDic = {
 
@@ -43,8 +46,34 @@ statesDic = {
     'ld':'Lakshadweep',
     'dd':'Daman and Diu'
 }
+
 inv_map = {v: k for k, v in statesDic.items()}
 inv_map = {k.lower(): v for k, v in inv_map.items()}
+
+
+
+
+def check_date(dt):
+    correctDate = None
+    try:
+        newDate = datetime.strptime(dt, '%d-%b-%y')
+        correctDate = True
+    except ValueError:
+        correctDate = False
+    return correctDate
+
+def formatDate(dt):
+    months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    m = str(process.extract(str(dt).split(" ")[1], months, limit=1)[0][0])
+
+    y = '20' # Assuming year is not given by user so for now it is hardcoded for 2020 only
+    d = str(dt).split(" ")[0]
+    # Backend data requires day to be two digits eg: 02
+    if(len(d)==1): 
+        d="0"+d
+
+    dt = str(d)+"-"+m+"-"+str(y)
+    return dt
 
 def preprocess_statedata():
     url = "https://api.covid19india.org/states_daily.json"
@@ -67,8 +96,14 @@ def preprocess_districtdata():
 def getStateCases(df,loc):
     #print("### Getting Info of {}".format(loc))
     
-    latestDate = str(df['date'].iloc[[-1]]).split(' ')[4].split("\n")[0]
+    latestDate = df['date'].iloc[[-1]].values[0]
     
+    #Spelling correct with fuzzy
+    print("location before spelling",loc)
+    choices = statesDic.values()
+    loc = str(process.extract(loc, choices, limit=1)[0][0])
+    loc = loc.lower()
+
     #print("location got",loc)
     loc = inv_map[loc]
     #print("location changed to",loc)
@@ -90,28 +125,45 @@ def getStateCases(df,loc):
     return obj
 
 def totalCases(df,dt):
-    ttConfirmed = str(df[(df['date']==dt)&(df['status']=='Confirmed')]['tt']).split(' ')[4].split("\n")[0]
-    ttrecovered = str(df[(df['date']==dt)&(df['status']=='Recovered')]['tt']).split(' ')[4].split("\n")[0]
-    ttdeceased = str(df[(df['date']==dt)&(df['status']=='Deceased')]['tt']).split(' ')[4].split("\n")[0]
+    print("Date",dt)
+    #Different Format Dates
+    dt = formatDate(dt)
     
-    obj ={
-        'date':str(dt),
-        'confirmed':str(ttConfirmed),
-        'recovered':str(ttrecovered),
-        'deceased':str(ttdeceased)
-    }
-    
+    if((check_date(dt)) and (datetime.strptime(dt,'%d-%b-%y')<datetime.now())):
+
+        ttConfirmed = df[(df['date']==dt)&(df['status']=='Confirmed')]['tt'].values[0]
+        ttrecovered = df[(df['date']==dt)&(df['status']=='Recovered')]['tt'].values[0]
+        ttdeceased = df[(df['date']==dt)&(df['status']=='Deceased')]['tt'].values[0]
+        
+        obj ={
+            'status':'1',
+            'date':str(dt),
+            'confirmed':str(ttConfirmed),
+            'recovered':str(ttrecovered),
+            'deceased':str(ttdeceased)
+        }
+    else:
+        obj={
+            'status':'0'
+        }
+
     return obj    
 
 def growthRateStates(df,loc):
-    latestDate = str(df['date'].iloc[[-1]]).split(' ')[4].split("\n")[0]
+    latestDate = df['date'].iloc[[-1]].values[0]
     
+    #Spelling correct with fuzzy
+    print("location before spelling",loc)
+    choices = statesDic.values()
+    loc = str(process.extract(loc, choices, limit=1)[0][0])
+    loc = loc.lower()
+
     loc = inv_map[loc]
 
     confCases = df[df['status']=='Confirmed'][loc].sum()
     NoOfDays = df.shape[0]/3
     
-    growthRate = (confCases)/(NoOfDays)
+    growthRate = int((confCases)/(NoOfDays))
     
     obj={
         'name': str(statesDic[loc]),
@@ -122,7 +174,7 @@ def growthRateStates(df,loc):
 
 def highestGrowthRateState(df):
     highest ={}
-    latestDate = str(df['date'].iloc[[-1]]).split(' ')[4].split("\n")[0]
+    latestDate = df['date'].iloc[[-1]].values[0]
     
     states = list(set(df.columns)-set(['status','date']))
     for i in states:
@@ -140,14 +192,21 @@ def highestGrowthRateState(df):
 
 def getZoneType(dfzones,dis):
     
-    district = str(dfzones[dfzones['district']==dis]['district']).split(' ')[4].split("\n")[0]
-    updateDate = str(dfzones[dfzones['district']==dis]['lastupdated']).split(' ')[4].split("\n")[0]
-    zone = str(dfzones[dfzones['district']==dis]['zone']).split(' ')[4].split("\n")[0]
+    #Spelling check for district names
+    choices = list(dfzones['district'].unique())
+    dis = str(process.extract(dis, choices, limit=1)[0][0])
+
+
+    district = dfzones[dfzones['district']==dis]['district'].values[0]
+    updateDate = dfzones[dfzones['district']==dis]['lastupdated'].values[0]
+    zone = dfzones[dfzones['district']==dis]['zone'].values[0]
+    state = dfzones[dfzones['district']==dis]['state'].values[0]
     
     obj = {
         'district':str(district),
         'updatedate':str(updateDate),
-        'zone':str(zone)
+        'zone':str(zone),
+        'state':str(state)
     }
     
     return obj
