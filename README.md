@@ -112,6 +112,8 @@ Second version of the UI [forked](https://github.com/JiteshGaikwad/Chatbot-Widge
 
 The chatbot is ready at http://localhost:8008
 
+***Note:* Still the bot needs lot of training data. We can integrate RASA-X for this purpose which is not yet added into this project.**
+
 
 ### Tasks To-Do-List
 
