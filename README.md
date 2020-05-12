@@ -1,6 +1,10 @@
 # Rasa-Covid19-Chatbot
 This is a chatbot developed to provide information about the covid-19 cases
 
+### **Short Glimpse of the working of chatbot**
+
+<img src = "images/short.gif">
+
 ## How to use this repo
 
 ### How to set-up the environment
