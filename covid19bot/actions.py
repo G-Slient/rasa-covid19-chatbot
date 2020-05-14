@@ -16,8 +16,8 @@ import requests
 
 # The Covid Data Api is hosted on PythonAnywhere Cloud Platform
 
-#IP = "http://gobillamothy85.pythonanywhere.com"
-IP = "http://localhost:8000"
+IP = "http://gobillamothy85.pythonanywhere.com"
+#IP = "http://localhost:8000"
 
 class ActionSearchNoPatients(Action):
 

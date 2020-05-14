@@ -1,6 +1,10 @@
 # Rasa-Covid19-Chatbot
 This is a chatbot developed to provide information about the covid-19 cases
 
+## Checkout the Demo Video Link https://youtu.be/xJg1ObtUWWY
+
+[<img src="https://img.youtube.com/vi/xJg1ObtUWWY/maxresdefault.jpg" >](https://youtu.be/xJg1ObtUWWY)
+
 ### **Short Glimpse of the working of chatbot**
 
 <img src = "images/short.gif">
@@ -128,7 +132,7 @@ The chatbot is ready at http://localhost:8008
 - [x] create a frontend application 
 - [x] connect the frontend with the rasa-chatbot
 - [x] deploy the flask server.
-- [ ] deploy the chatbot app.
+- [x] deploy the chatbot app.
 
 ## References
 
