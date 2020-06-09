@@ -104,8 +104,7 @@ Step 3: Run the Flask Server for backend data
 
 Step 4: Run the HTTP server for running website for chatbot  
 
-The chatbot UI is provided in index.html 
-Second version of the UI [forked](https://github.com/JiteshGaikwad/Chatbot-Widget) from another repo is also placed for individual learnings into chatbot frontend.
+The chatbot UI is provided in index.html [forked](https://github.com/JiteshGaikwad/Chatbot-Widget) from another repo is also placed for individual learnings into chatbot frontend.
 
     python -m http.server 8008
 
@@ -119,17 +118,17 @@ The chatbot is ready at http://localhost:8008
 ### Tasks To-Do-List
 
 
-- [x] create the basic project 
+- [x] Create the basic project 
 - [x] Make NLU training data
 - [x] Make the dialogue management model
 - [x] Make a flask server to extract the covid data from https://api.covid19india.org/
 - [x] Create the more stories
 - [x] Handle the spelling mistakes by the users
 - [x] Handle the date format given by the users.
-- [x] create a frontend application 
-- [x] connect the frontend with the rasa-chatbot
-- [x] deploy the flask server.
-- [x] deploy the chatbot app.
+- [x] Create a frontend application 
+- [x] Connect the frontend with the rasa-chatbot
+- [x] Deploy the flask server.
+- [x] Deploy the chatbot app.
 
 ## References
 
