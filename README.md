@@ -5,9 +5,6 @@ This is a chatbot developed to provide information about the covid-19 cases
 
 [<img src="https://img.youtube.com/vi/xJg1ObtUWWY/maxresdefault.jpg" >](https://youtu.be/xJg1ObtUWWY)
 
-### **Short Glimpse of the working of chatbot**
-
-<img src = "images/short.gif">
 
 ## How to use this repo
 
