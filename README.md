@@ -134,6 +134,7 @@ The chatbot is ready at http://localhost:8008
 ## References
 
 1. [RasaMasterClass](https://www.youtube.com/channel/UCJ0V6493mLvqdiVwOKWBODQ) Official Youtube videos.
+2. Thanks to https://github.com/JiteshGaikwad/Chatbot-Widget for frontend-ui code.
 
         Along with references, detailed blogs will be posted soon ...
 
