@@ -18,7 +18,7 @@ Step 1: Create a Virtual Environment
 
 Step 2: Activate the virtual env 
 
-    Source myenv/bin/activate
+    source myenv/bin/activate
 
 Step 3: Deactivate the conda env if it exits
 
